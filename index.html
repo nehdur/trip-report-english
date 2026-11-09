@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Two Weeks in Korea – An Autumn Travel Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;900&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   CSS Variables & Design Tokens (Hanji paper & Dancheong inspired)
+   ========================================================================== */
+:root {
+  --bg: #f7f4ed;
+  --bg-subtle: #efebe0;
+  --surface: #ffffff;
+  --surface-raised: #fbf9f5;
+  --ink: #1e1d1b;
+  --ink-secondary: #4a4742;
+  --muted: #787369;
+  --border: #dcd6c8;
+  --border-light: #ece7db;
+  
+  /* Heritage Dancheong & Royal Korean Accents */
+  --crimson: #af2b28;
+  --crimson-hover: #8e201d;
+  --crimson-soft: #fbf0ee;
+  --indigo: #1b355a;
+  --indigo-soft: #edf3fa;
+  --celadon: #3d7967;
+  --celadon-soft: #eaf3f0;
+  --gold: #b38634;
+  --gold-soft: #fcf6ea;
+  
+  --shadow-sm: 0 1px 3px rgba(30, 29, 27, 0.05);
+  --shadow-md: 0 4px 14px rgba(30, 29, 27, 0.07);
+  --shadow-lg: 0 10px 30px rgba(30, 29, 27, 0.1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #11141a;
+  --bg-subtle: #171b23;
+  --surface: #1b212c;
+  --surface-raised: #222937;
+  --ink: #ede9df;
+  --ink-secondary: #beb9ac;
+  --muted: #8b877b;
+  --border: #2d3444;
+  --border-light: #232a38;
+  
+  --crimson: #e05d58;
+  --crimson-hover: #f0746f;
+  --crimson-soft: #2e1a1b;
+  --indigo: #7fa4de;
+  --indigo-soft: #172437;
+  --celadon: #5fb098;
+  --celadon-soft: #132722;
+  --gold: #dcb360;
+  --gold-soft: #2d2618;
+  
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.3);
+  --shadow-md: 0 6px 18px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Global Reset & Layout
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Gowun Batang', 'Noto Serif KR', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.85;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reading Progress Bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--crimson), var(--gold));
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* Traditional Bojagi Ribbon */
+.bojagi-ribbon {
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    var(--crimson) 0% 16%, 
+    var(--gold) 16% 32%, 
+    var(--indigo) 32% 48%, 
+    var(--celadon) 48% 66%, 
+    #7a6b82 66% 82%, 
+    var(--crimson) 82% 100%
+  );
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  color: var(--crimson);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Site Header
+   ========================================================================== */
+header.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+}
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand:hover { text-decoration: none; }
+
+/* Red Seal Stamp (도장) */
+.stamp {
+  width: 44px;
+  height: 44px;
+  background-color: var(--crimson);
+  color: #fff;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 900;
+  font-size: 19px;
+  line-height: 1;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4), var(--shadow-sm);
+  transform: rotate(-3deg);
+  transition: transform 0.2s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+.brand:hover .stamp {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.brand-text h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.brand-text small {
+  display: block;
+  font-size: 12.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 15px;
+}
+.btn-icon:hover {
+  background: var(--bg-subtle);
+  border-color: var(--muted);
+}
+
+/* Nav Bar */
+nav.primary-nav {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-top: 1px solid var(--border-light);
+  gap: 4px;
+}
+nav.primary-nav::-webkit-scrollbar { display: none; }
+nav.primary-nav a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  position: relative;
+  text-decoration: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: var(--transition);
+}
+nav.primary-nav a:hover {
+  color: var(--crimson);
+  background: var(--bg-subtle);
+}
+nav.primary-nav a[aria-current="page"] {
+  color: var(--crimson);
+  font-weight: 700;
+}
+nav.primary-nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 2.5px;
+  background-color: var(--crimson);
+  border-radius: 3px 3px 0 0;
+}
+nav.primary-nav a .badge-kr {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--indigo-soft);
+  color: var(--indigo);
+}
+
+/* ==========================================================================
+   Overview Trip Strip (Highlight Metrics)
+   ========================================================================== */
+.trip-stats-strip {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+}
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: var(--indigo);
+}
+.stat-pill b {
+  display: block;
+  font-size: 14.5px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.stat-pill span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Main Layout & Two Columns
+   ========================================================================== */
+main.main-layout {
+  padding-top: 36px;
+  padding-bottom: 72px;
+  flex: 1;
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 44px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* ==========================================================================
+   Hero Banner & Korean Mountain Painting Artwork
+   ========================================================================== */
+.hero-card {
+  position: relative;
+  background: linear-gradient(135deg, #162438 0%, #1b355a 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 44px 36px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 36px;
+}
+.hero-svg-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  color: #fcebd2;
+}
+.hero-card h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.25;
+  margin: 0 0 14px;
+  font-weight: 900;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+.hero-card p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #e5edf7;
+  margin: 0;
+}
+.vertical-calligraphy {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  writing-mode: vertical-rl;
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ==========================================================================
+   Interactive Route Map Component
+   ========================================================================== */
+.itinerary-map-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  margin-bottom: 34px;
+  box-shadow: var(--shadow-sm);
+}
+.itinerary-map-box h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-family: 'Noto Serif KR', serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.itinerary-map-box p.map-sub {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0 0 16px;
+}
+.route-svg-container {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+.route-node {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.route-node:hover circle {
+  fill: var(--crimson);
+  r: 10;
+}
+
+/* ==========================================================================
+   Article List (Home Cards)
+   ========================================================================== */
+.posts-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.article-card {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  gap: 24px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.article-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--muted);
+  box-shadow: var(--shadow-md);
+}
+.card-stamp-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-right: 1px dashed var(--border);
+  padding-right: 20px;
+}
+.stamp-badge {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--indigo);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.15em;
+  padding: 8px 4px;
+}
+.article-card-main {
+  display: flex;
+  flex-direction: column;
+}
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.tag-badge {
+  background: var(--crimson-soft);
+  color: var(--crimson);
+  border: 1px solid rgba(175, 43, 40, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+}
+.article-card h3 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+.article-card h3 a {
+  color: var(--ink);
+}
+.article-card h3 a:hover {
+  color: var(--crimson);
+  text-decoration: none;
+}
+.article-card p.excerpt {
+  color: var(--ink-secondary);
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13.5px;
+}
+.read-more-link {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.read-more-link::after {
+  content: "→";
+  transition: transform 0.2s ease;
+}
+.read-more-link:hover::after {
+  transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+  .article-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px;
+  }
+  .card-stamp-col {
+    flex-direction: row;
+    justify-content: space-between;
+    border-right: none;
+    border-bottom: 1px dashed var(--border);
+    padding-right: 0;
+    padding-bottom: 10px;
+  }
+  .stamp-badge {
+    writing-mode: horizontal-tb;
+    font-size: 16px;
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   Single Post Detail View
+   ========================================================================== */
+.post-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 44px 40px;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .post-container {
+    padding: 28px 20px;
+  }
+}
+.post-watermark {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 90px;
+  font-weight: 900;
+  color: var(--ink);
+  opacity: 0.04;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+.post-header {
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+}
+.post-header h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.3;
+  margin: 12px 0 14px;
+  font-weight: 900;
+  color: var(--ink);
+}
+.post-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13.5px;
+}
+.post-action-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--ink-secondary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+.post-action-btn:hover {
+  background: var(--surface-raised);
+  color: var(--crimson);
+  border-color: var(--crimson);
+}
+.post-action-btn.active {
+  background: var(--crimson-soft);
+  color: var(--crimson);
+  border-color: var(--crimson);
+}
+
+/* Post Typography & Elements */
+.post-body {
+  font-size: 17.5px;
+  line-height: 1.9;
+  color: var(--ink);
+}
+.post-body p {
+  margin: 0 0 1.5em;
+}
+.post-body h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 24px;
+  margin: 2em 0 0.8em;
+  padding-left: 14px;
+  border-left: 4px solid var(--crimson);
+  line-height: 1.35;
+  color: var(--ink);
+}
+.facts-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 28px 0 34px;
+  padding: 0;
+  list-style: none;
+}
+.facts-deck li {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: 'Noto Sans KR', sans-serif;
+  box-shadow: inset 0 2px 0 var(--indigo);
+}
+.facts-deck li b {
+  display: block;
+  font-size: 20px;
+  font-family: 'Noto Serif KR', serif;
+  color: var(--indigo);
+  margin-bottom: 2px;
+}
+.facts-deck li span {
+  font-size: 13px;
+  color: var(--muted);
+}
+blockquote.styled-quote {
+  margin: 2.2em 0;
+  padding: 18px 24px 18px 26px;
+  background: var(--surface-raised);
+  border-left: 3px solid var(--crimson);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 20px;
+  line-height: 1.7;
+  font-style: italic;
+  position: relative;
+  color: var(--ink);
+}
+blockquote.styled-quote::before {
+  content: "“";
+  font-family: Georgia, serif;
+  font-size: 50px;
+  line-height: 0;
+  position: absolute;
+  left: 6px;
+  top: 24px;
+  color: var(--crimson);
+  opacity: 0.25;
+}
+
+/* Post Pagination Controls */
+.post-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.pager-card {
+  padding: 14px 16px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.pager-card:hover {
+  background: var(--surface-raised);
+  border-color: var(--crimson);
+  text-decoration: none;
+}
+.pager-card.next { text-align: right; }
+.pager-card small {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.pager-card span {
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Comments Section
+   ========================================================================== */
+.comments-card {
+  margin-top: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+}
+.comments-card h3 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.comment-count-badge {
+  font-size: 13px;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--indigo-soft);
+  color: var(--indigo);
+  padding: 2px 9px;
+  border-radius: 12px;
+}
+.comment-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  gap: 14px;
+}
+.comment-item:last-child {
+  border-bottom: none;
+}
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--crimson-soft);
+  color: var(--crimson);
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.comment-content {
+  flex: 1;
+}
+.comment-author-bar {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.comment-author-bar b {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+}
+.comment-author-bar time {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.comment-content p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+}
+
+/* Comment Form */
+form.comment-form {
+  margin-top: 28px;
+  background: var(--bg-subtle);
+  padding: 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+form.comment-form h4 {
+  margin: 0 0 14px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 17px;
+}
+.form-group {
+  margin-bottom: 14px;
+}
+.form-group label {
+  display: block;
+  font-size: 13.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+input[type="text"],
+input[type="search"],
+textarea,
+select {
+  width: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  transition: var(--transition);
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 3px var(--indigo-soft);
+}
+button.btn-primary {
+  background: var(--crimson);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+button.btn-primary:hover {
+  background: var(--crimson-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Sidebar Widgets
+   ========================================================================== */
+aside.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+.widget h3 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 17px;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-light);
+}
+.widget h3::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--crimson);
+}
+
+/* Search widget */
+.search-box-wrap {
+  position: relative;
+}
+.search-icon-symbol {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+  font-size: 14px;
+}
+.search-hint {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-family: 'Noto Sans KR', sans-serif;
+  margin-top: 6px;
+}
+kbd {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 11px;
+}
+
+/* Categories List */
+.cat-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.cat-pill-list button {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.cat-pill-list button:hover,
+.cat-pill-list button.active {
+  background: var(--crimson);
+  color: #fff;
+  border-color: var(--crimson);
+}
+
+/* Currency Converter Widget */
+.currency-converter {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.currency-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.calc-result {
+  background: var(--bg-subtle);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--indigo);
+}
+
+/* Survival Phrases Widget */
+.phrase-card {
+  padding: 10px 12px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.phrase-kr {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--indigo);
+  display: flex;
+  justify-content: space-between;
+}
+.phrase-rom {
+  font-size: 12.5px;
+  color: var(--crimson);
+  font-style: italic;
+}
+.phrase-en {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  margin-top: 2px;
+}
+
+/* Recent Posts Widget */
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.recent-list li {
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--border);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.recent-list li:last-child { border-bottom: none; }
+.recent-list a {
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.recent-list a:hover {
+  color: var(--crimson);
+}
+
+/* ==========================================================================
+   Toast Notification & Utilities
+   ========================================================================== */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--ink);
+  color: var(--surface);
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  z-index: 2000;
+  pointer-events: none;
+}
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer.site-footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 36px 0 44px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: auto;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--crimson);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar" aria-hidden="true"></div>
+
+<!-- Top Traditional Silk Patchwork Accent -->
+<div class="bojagi-ribbon" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap header-main">
+    <a class="brand" href="#" aria-label="Home - Two Weeks in Korea">
+      <div class="stamp" aria-hidden="true">한국</div>
+      <div class="brand-text">
+        <h1>Two Weeks in Korea</h1>
+        <small>Autumn Journal · October 2026</small>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <button class="btn-icon" id="theme-btn" type="button" title="Toggle Night/Day Mode" aria-label="Toggle Night/Day Mode">
+        🌓
+      </button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <nav class="primary-nav" id="nav-bar" aria-label="Main Navigation">
+      <!-- Generated via JS -->
+    </nav>
+  </div>
+</header>
+
+<!-- Trip Highlights Metric Strip -->
+<div class="trip-stats-strip">
+  <div class="wrap stats-grid">
+    <div class="stat-pill">
+      <div class="stat-icon">🍂</div>
+      <div>
+        <b>14 Days Route</b>
+        <span>Autumn foliage window</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon">🚄</div>
+      <div>
+        <b>4 Destinations</b>
+        <span>Seoul · Gyeongju · Busan · Jeju</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon">👟</div>
+      <div>
+        <b>~160 Kilometers</b>
+        <span>Explored largely on foot</span>
+      </div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-icon">💳</div>
+      <div>
+        <b id="strip-cost">₩2.9M / ~$2,150</b>
+        <span>All-inclusive per traveler</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap main-layout">
+  <div class="content-grid">
+    <!-- Main Article Stream or Single Post -->
+    <section id="view-port" aria-live="polite">
+      <!-- Rendered dynamically -->
+    </section>
+
+    <!-- Sidebar Tools & Context -->
+    <aside class="sidebar">
+      <!-- Search -->
+      <div class="widget">
+        <h3>Search Journal</h3>
+        <div class="search-box-wrap">
+          <input type="search" id="search-input" placeholder="Search markets, KTX, subway..." aria-label="Search articles">
+          <span class="search-icon-symbol">🔍</span>
+        </div>
+        <div class="search-hint">Tip: Press <kbd>/</kbd> to quickly search</div>
+      </div>
+
+      <!-- Categories Filter -->
+      <div class="widget">
+        <h3>Categories</h3>
+        <ul class="cat-pill-list" id="category-pills">
+          <!-- Dynamic -->
+        </ul>
+      </div>
+
+      <!-- Quick Currency Helper -->
+      <div class="widget currency-converter">
+        <h3>Quick Currency Calc</h3>
+        <div class="currency-row">
+          <input type="number" id="calc-won" value="10000" step="1000" aria-label="Korean Won Amount">
+          <select id="calc-curr" aria-label="Select Target Currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+          </select>
+        </div>
+        <div class="calc-result" id="calc-output">₩10,000 ≈ $7.45 USD</div>
+      </div>
+
+      <!-- Essential Korean Phrases for Traveling -->
+      <div class="widget">
+        <h3>Survival Phrases</h3>
+        <div class="phrase-card">
+          <div class="phrase-kr"><span>감사합니다</span> <small>Polite</small></div>
+          <div class="phrase-rom">Gamsahamnida</div>
+          <div class="phrase-en">Thank you very much.</div>
+        </div>
+        <div class="phrase-card">
+          <div class="phrase-kr"><span>이거 얼마예요?</span></div>
+          <div class="phrase-rom">Igeo eolmayeyo?</div>
+          <div class="phrase-en">How much is this?</div>
+        </div>
+        <div class="phrase-card">
+          <div class="phrase-kr"><span>화장실 어디예요?</span></div>
+          <div class="phrase-rom">Hwajangsil eodiyeyo?</div>
+          <div class="phrase-en">Where is the restroom?</div>
+        </div>
+        <div class="phrase-card">
+          <div class="phrase-kr"><span>계산해 주세요</span></div>
+          <div class="phrase-rom">Gyesanhae juseyo</div>
+          <div class="phrase-en">The check/bill, please.</div>
+        </div>
+      </div>
+
+      <!-- Recent Timeline Stories -->
+      <div class="widget">
+        <h3>Timeline & Stops</h3>
+        <ul class="recent-list" id="sidebar-recent">
+          <!-- Dynamic -->
+        </ul>
+      </div>
+
+      <!-- About this Journal -->
+      <div class="widget">
+        <h3>About the Trip</h3>
+        <p style="font-size:14px; margin:0 0 10px; line-height:1.6; color:var(--ink-secondary);">
+          We spent two weeks traveling south from Seoul's historic alleys through ancient Silla tombs to Busan's seafood piers, finishing with a coastal road trip in Jeju.
+        </p>
+        <span class="footer-badge">🍁 Visited late Autumn</span>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <b>Two Weeks in Korea</b> — Field notes, costs, and itineraries.
+      <br>
+      <small>© 2026. Handcrafted for travelers. Written on the road, edited in transit.</small>
+    </div>
+    <div>
+      <a href="#" style="color:var(--muted); font-size:13px;" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">Back to Top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">Link copied to clipboard!</div>
+
+<!-- ==========================================================================
+     Application Logic
+     ========================================================================== -->
+<script>
+/* Blog Posts Dataset */
+const posts = [
+  {
+    id: "seoul",
+    title: "Days 1–5: Seoul on Foot & Subway",
+    date: "October 3, 2026",
+    cat: "Seoul",
+    readTime: "4 min read",
+    krName: "서울",
+    excerpt: "Palaces at dawn, alleys in Ikseon-dong, late-night sizzling hotteok, and navigating 30,000 steps a day.",
+    facts: [
+      { num: "5 Days", label: "Base Camp: Ikseon-dong" },
+      { num: "₩62,000", label: "T-Money Card Transit" },
+      { num: "31,400", label: "Average Daily Steps" },
+      { num: "8 Palaces & Gates", label: "Explored" }
+    ],
+    body: `
+      <p>We landed at Incheon Terminal 2 in early afternoon and boarded the express AREX straight to Seoul Station (43 minutes flat). Loading a physical T-money card at the station convenience store is the first thing any visitor should do—it works seamlessly on subways, city buses, and even vending machines.</p>
+      
+      <h2>Palaces and the Morning Light</h2>
+      <p>Gyeongbokgung opens its gates at 9:00 AM, but the tour buses pull in en masse around 10:15. Arrive right at opening. While renting a traditional hanbok grants free palace entry, we opted to skip the costume rental queues to move briskly across the expansive stone courtyards in running shoes.</p>
+      
+      <p>Our true highlight was Changdeokgung's Secret Garden (Huwon). You must reserve the guided slot online a few days ahead. Under the October canopy, the pavilions and reflection ponds looked like an ink-wash scroll painting come to life.</p>
+      
+      <blockquote class="styled-quote">
+        The most peaceful hour in Seoul was 7:30 a.m. along the stone walls of Deoksugung, before the city awoke and coffee carts began clattering.
+      </blockquote>
+      
+      <h2>Where We Stayed</h2>
+      <p>A quiet boutique hanok guesthouse in Ikseon-dong, five minutes from Jongno 3-ga station. At dusk the labyrinthine alleys burst into lively craft beer spots and noodle counters. <em>Traveler tip:</em> request a room that faces into the courtyard rather than the street to ensure sound sleep.</p>
+      
+      <h2>Street Food Circuits</h2>
+      <p>Skip overpriced tourist restaurants. Head to <strong>Gwangjang Market</strong> for crispy mung-bean pancakes (bindaetteok) and bite-sized mayak gimbap; <strong>Namdaemun</strong> for piping hot brown sugar hotteok; and Euljiro's outdoor plastic tables for draft beer with dried pollack.</p>
+    `
+  },
+  {
+    id: "gyeongju",
+    title: "Days 6–7: Gyeongju, The Museum Without Walls",
+    date: "October 8, 2026",
+    cat: "Day trips",
+    readTime: "3 min read",
+    krName: "경주",
+    excerpt: "A swift KTX ride south, tandem bicycles between ancient grass-covered royal tombs, and glowing lotus ponds at dusk.",
+    facts: [
+      { num: "2 Hours", label: "KTX from Seoul" },
+      { num: "₩5,000", label: "Half-Day Bike Rental" },
+      { num: "1 Night", label: "Overnight in Hwangnam" },
+      { num: "Silla Dynasty", label: "1,000 Yrs of History" }
+    ],
+    body: `
+      <p>Gyeongju served as the golden capital of the Silla kingdom for nearly a millennium. Unlike modern metropolitan Seoul, Gyeongju restricts building heights, meaning the undulating green royal burial mounds (tumuli) dominate the skyline like giant emerald hills.</p>
+      
+      <h2>Two Wheels Around Tumuli</h2>
+      <p>Rent a city bike near the bus terminal. The terrain is mercifully flat and lined with dedicated bike paths. We spent the afternoon looping between Daereungwon Tomb Complex and Cheomseongdae, the oldest surviving astronomical observatory in East Asia.</p>
+      
+      <h2>Sunset at Donggung & Wolji</h2>
+      <p>Formerly known as Anapji Pond, this former banquet estate should strictly be visited at twilight. When the spotlit architectural pavilions mirror perfectly across the motionless water, you understand why Silla monarchs held state banquets here.</p>
+      
+      <blockquote class="styled-quote">
+        Stay overnight. By 5 PM the day-tour buses retreat back to Busan, leaving the tomb park peaceful, silent, and glowing under evening lights.
+      </blockquote>
+      
+      <h2>Bulguksa & Seokguram</h2>
+      <p>Early the following morning, take Bus #10 or #11 up Tohamsan mountain to Bulguksa Temple. The intricate stone terraces are masterworks of eighth-century Buddhist stone masonry.</p>
+    `
+  },
+  {
+    id: "busan",
+    title: "Days 8–10: Busan by the Sea",
+    date: "October 12, 2026",
+    cat: "Busan",
+    readTime: "4 min read",
+    krName: "부산",
+    excerpt: "Salt breeze, cliff-side Buddhist temples, vibrant fish auctions, and a life-changing bowl of dwaeji gukbap.",
+    facts: [
+      { num: "3 Days", label: "Seaside Haven" },
+      { num: "₩9,000", label: "Best Dwaeji Gukbap" },
+      { num: "35 Mins", label: "KTX from Gyeongju" },
+      { num: "2 Beaches", label: "Gwangalli & Haeundae" }
+    ],
+    body: `
+      <p>Busan has an unmistakable edge: salty, energetic, and completely unpretentious. The subway connects dramatic coastal cliffs directly with neon-lit urban nightlife districts.</p>
+      
+      <h2>Coastal Heights</h2>
+      <p>We took an early taxi out to <strong>Haedong Yonggungsa</strong>, a rare Buddhist sanctuary constructed directly onto rocky coastal cliffs where waves crash against stone stupas. Arriving before 8:30 AM is critical—after 10:00 AM the cliff walkways become jammed with selfie sticks.</p>
+      
+      <p>In the afternoon we strolled through Gamcheon Culture Village, once a refugee refuge in the 1950s that has been revitalized with pastel-painted terraces and public art installations.</p>
+      
+      <blockquote class="styled-quote">
+        Dwaeji gukbap (pork soup) at a humble stall in Seomyeon Market cost ₩9,000 and proved to be our most memorable meal of the entire trip.
+      </blockquote>
+      
+      <h2>Jagalchi Fish Market</h2>
+      <p>Walk the damp aisles of Jagalchi where veteran fishmongers sell live flounder, sea squirts, and crab. You can purchase your catch directly and take it upstairs to the communal dining halls where chefs prepare it raw (hoe) or grilled with spicy banchan.</p>
+    `
+  },
+  {
+    id: "jeju",
+    title: "Days 11–14: The Jeju Island Loop",
+    date: "October 17, 2026",
+    cat: "Jeju",
+    readTime: "5 min read",
+    krName: "제주",
+    excerpt: "Coastal car rental, volcanic basalt craters, citrus groves, and coastal sunrise walks.",
+    facts: [
+      { num: "4 Days", label: "Road Trip Loop" },
+      { num: "55 Mins", label: "Flight from Gimhae (PUS)" },
+      { num: "280 km", label: "Coastal Driving" },
+      { num: "1 Sunrise", label: "Seongsan Peak" }
+    ],
+    body: `
+      <p>Do not attempt Jeju without a rental vehicle unless you have limitless patience for regional buses. An International Driving Permit (IDP) from your home country is strictly required at car rental counters—they will not hand you the keys without one.</p>
+      
+      <h2>Driving the Volcanic Coast</h2>
+      <p>We circumnavigated clockwise: starting in Jeju City, stopping for turquoise water views at Hamdeok Beach, and lodging near Seongsan on the eastern shore. Scaling <strong>Seongsan Ilchulbong</strong> (Sunrise Peak) involves 25 minutes of steep wooden staircases, rewarding climbers with a panorama over the volcanic tuft cone.</p>
+      
+      <h2>Black Pork & Roadside Tangerines</h2>
+      <p>October in Jeju marks prime harvest for Hallabong citrus and sweet mandarins. Roadside wooden stalls sell them by the crate for next to nothing. For dinner, gather around a charcoal brazier for Jeju black pork barbecue paired with salted anchovy dipping sauce (meljeot).</p>
+      
+      <blockquote class="styled-quote">
+        The Olle walking paths hug the volcanic shoreline with ribbons tied to cedar branches. Even walking just a two-mile segment offers pure solace.
+      </blockquote>
+    `
+  },
+  {
+    id: "eats",
+    title: "Budget Breakdown, Apps & Lessons",
+    date: "October 21, 2026",
+    cat: "Planning",
+    readTime: "4 min read",
+    krName: "정리",
+    excerpt: "Exactly what two weeks cost, essential navigation tools, and what we would do differently.",
+    facts: [
+      { num: "₩2.9M", label: "Total Cost per Person" },
+      { num: "₩55,000", label: "Avg. Daily Food Budget" },
+      { num: "3 Essential", label: "Smart Phone Apps" },
+      { num: "100%", label: "Card & T-Money Friendly" }
+    ],
+    body: `
+      <h2>The Digital Toolset That Saved Us</h2>
+      <p>Due to local security laws, Google Maps is heavily constrained for walking and transit in South Korea. Instead, install these before landing:</p>
+      <ul>
+        <li><strong>Naver Map:</strong> By far the best English-friendly navigation with precise subway exit numbers and live bus arrival times.</li>
+        <li><strong>Papago:</strong> Naver's translation app is substantially more natural with Korean honorifics and image camera menu reading than competitors.</li>
+        <li><strong>Kakao T:</strong> Allows hailing normal city metered taxis without needing a Korean phone number or credit card.</li>
+      </ul>
+      
+      <h2>What We’d Change Next Time</h2>
+      <p>Spend one fewer day in Seoul and add a night in <strong>Jeonju Hanok Village</strong> to eat real bibimbap served in heavy brass bowls. Pack lighter luggage: subway transfers often feature deep staircases with limited elevator access. Lastly, learn Hangul reading phonetics—you can master the alphabet in an afternoon and easily decode street signs and food menus.</p>
+      
+      <blockquote class="styled-quote">
+        Korea is remarkably safe, efficient, and welcoming to independent travelers. Don't over-plan every hour: leave room to wander down steam-filled alleys.
+      </blockquote>
+    `
+  }
+];
+
+/* Default Seed Comments */
+const defaultComments = {
+  seoul: [
+    { name: "Mina K.", date: "Oct 22, 2026", text: "Changdeokgung’s Secret Garden is absolutely breathtaking in autumn! Great tip on booking the ticket online in advance." }
+  ],
+  busan: [
+    { name: "Daniel S.", date: "Oct 24, 2026", text: "Heading to Busan next month—definitely putting that Seomyeon gukbap stall on my list. Thanks!" }
+  ]
+};
+
+/* State Management */
+let currentCategory = "";
+let currentSearch = "";
+let bookmarkedPosts = JSON.parse(localStorage.getItem("korea_bookmarks") || "[]");
+let userComments = JSON.parse(localStorage.getItem("korea_comments") || JSON.stringify(defaultComments));
+
+const $ = sel => document.querySelector(sel);
+const sanitize = str => str.replace(/[&<>'"]/g, tag => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+}[tag] || tag));
+
+/* ==========================================================================
+   Currency Converter Helper
+   ========================================================================== */
+const rates = { USD: 0.00074, EUR: 0.00069, GBP: 0.00059 };
+function updateCurrencyCalc() {
+  const won = parseFloat($("#calc-won").value) || 0;
+  const curr = $("#calc-curr").value;
+  const converted = (won * rates[curr]).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const symbol = curr === 'USD' ? '$' : curr === 'EUR' ? '€' : '£';
+  $("#calc-output").textContent = `₩${won.toLocaleString()} ≈ ${symbol}${converted} ${curr}`;
+}
+$("#calc-won").addEventListener("input", updateCurrencyCalc);
+$("#calc-curr").addEventListener("change", updateCurrencyCalc);
+
+/* ==========================================================================
+   UI Components & Views
+   ========================================================================== */
+
+function renderHeaderNav(activeId) {
+  const links = [
+    `<a href="#" ${activeId === "" ? 'aria-current="page"' : ''}><span class="badge-kr">전체</span> All Posts</a>`
+  ];
+  posts.forEach(p => {
+    links.push(`
+      <a href="#${p.id}" ${activeId === p.id ? 'aria-current="page"' : ''}>
+        <span class="badge-kr">${p.krName}</span> ${p.title.split(":")[0]}
+      </a>
+    `);
+  });
+  $("#nav-bar").innerHTML = links.join("");
+  
+  // Update sidebar recents
+  $("#sidebar-recent").innerHTML = posts.map(p => `
+    <li>
+      <a href="#${p.id}">
+        <span>${p.title.split(":")[0]}</span>
+        <span style="font-size:12px; color:var(--muted);">${p.cat}</span>
+      </a>
+    </li>
+  `).join("");
+
+  // Update categories
+  const cats = [...new Set(posts.map(p => p.cat))];
+  $("#category-pills").innerHTML = `
+    <li><button class="${currentCategory === '' ? 'active' : ''}" data-cat="">All (${posts.length})</button></li>
+  ` + cats.map(c => `
+    <li><button class="${currentCategory === c ? 'active' : ''}" data-cat="${c}">${c} (${posts.filter(p=>p.cat===c).length})</button></li>
+  `).join("");
+}
+
+function renderHero() {
+  return `
+    <div class="hero-card">
+      <svg class="hero-svg-bg" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#14213d"/>
+            <stop offset="100%" stop-color="#1e3a6e"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="360" fill="url(#skyGrad)"/>
+        <!-- Red Harvest Sun -->
+        <circle cx="210" cy="95" r="42" fill="#c53030" opacity="0.9"/>
+        <!-- Full White Moon -->
+        <circle cx="590" cy="95" r="32" fill="#faf4e8" opacity="0.85"/>
+        <!-- Distant Mountain Peaks (Ilwol Obongdo inspiration) -->
+        <path d="M0 260 L90 160 L180 250 L270 140 L370 255 L420 120 L500 250 L580 150 L680 255 L750 170 L800 250 V360 H0Z" fill="#244b7a" opacity="0.7"/>
+        <path d="M0 295 L110 215 L220 280 L320 200 L410 285 L510 215 L620 290 L710 220 L800 280 V360 H0Z" fill="#3d7967" opacity="0.6"/>
+        <path d="M0 325 Q200 290 400 320 T800 315 V360 H0Z" fill="#0f1929"/>
+      </svg>
+      <div class="vertical-calligraphy" aria-hidden="true">한국 여정기</div>
+      <div class="hero-content">
+        <div class="hero-tag">🍁 Complete 14-Day Itinerary</div>
+        <h2>Two Weeks, Four Regions, Endless Banchan</h2>
+        <p>A realistic travelogue covering bullet trains, temple mornings, seafood alleys, budget receipts, and the small mistakes you can easily avoid.</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderInteractiveMap() {
+  return `
+    <div class="itinerary-map-box">
+      <h3>
+        <span>Travel Route & Geographic Arc</span>
+        <small style="font-size:12.5px; font-weight:normal; color:var(--muted);">Click any stop to jump</small>
+      </h3>
+      <p class="map-sub">Seoul → KTX to Gyeongju → Busan Metro → Domestic flight to Jeju Island.</p>
+      
+      <div class="route-svg-container">
+        <svg viewBox="0 0 650 200" style="width:100%; height:auto; display:block;">
+          <defs>
+            <linearGradient id="routeLine" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#af2b28"/>
+              <stop offset="40%" stop-color="#b38634"/>
+              <stop offset="70%" stop-color="#1b355a"/>
+              <stop offset="100%" stop-color="#3d7967"/>
+            </linearGradient>
+          </defs>
+          
+          <!-- Dashed Connection Track -->
+          <path d="M 80 100 Q 200 60, 260 100 T 430 100 T 570 100" fill="none" stroke="url(#routeLine)" stroke-width="3.5" stroke-dasharray="6,6"/>
+          
+          <!-- Transport Mode Labels -->
+          <text x="165" y="72" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">AREX & Transit</text>
+          <text x="345" y="80" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">🚄 KTX (2 hrs)</text>
+          <text x="500" y="80" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">✈️ Flight (55m)</text>
+
+          <!-- Node 1: Seoul -->
+          <g class="route-node" onclick="location.hash='#seoul'">
+            <circle cx="80" cy="100" r="8" fill="#af2b28" stroke="#fff" stroke-width="2"/>
+            <text x="80" y="130" font-family="'Noto Serif KR', serif" font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle">Seoul</text>
+            <text x="80" y="148" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">Days 1–5</text>
+          </g>
+
+          <!-- Node 2: Gyeongju -->
+          <g class="route-node" onclick="location.hash='#gyeongju'">
+            <circle cx="260" cy="100" r="8" fill="#b38634" stroke="#fff" stroke-width="2"/>
+            <text x="260" y="130" font-family="'Noto Serif KR', serif" font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle">Gyeongju</text>
+            <text x="260" y="148" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">Days 6–7</text>
+          </g>
+
+          <!-- Node 3: Busan -->
+          <g class="route-node" onclick="location.hash='#busan'">
+            <circle cx="430" cy="100" r="8" fill="#1b355a" stroke="#fff" stroke-width="2"/>
+            <text x="430" y="130" font-family="'Noto Serif KR', serif" font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle">Busan</text>
+            <text x="430" y="148" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">Days 8–10</text>
+          </g>
+
+          <!-- Node 4: Jeju -->
+          <g class="route-node" onclick="location.hash='#jeju'">
+            <circle cx="570" cy="100" r="8" fill="#3d7967" stroke="#fff" stroke-width="2"/>
+            <text x="570" y="130" font-family="'Noto Serif KR', serif" font-weight="700" font-size="14" fill="var(--ink)" text-anchor="middle">Jeju Island</text>
+            <text x="570" y="148" font-family="'Noto Sans KR', sans-serif" font-size="11" fill="var(--muted)" text-anchor="middle">Days 11–14</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  `;
+}
+
+function renderHomeView() {
+  const query = currentSearch.trim().toLowerCase();
+  const filtered = posts.filter(p => {
+    const matchesCat = !currentCategory || p.cat === currentCategory;
+    const matchesQuery = !query || (p.title + p.excerpt + p.body + p.cat).toLowerCase().includes(query);
+    return matchesCat && matchesQuery;
+  });
+
+  let html = "";
+  if (!currentCategory && !query) {
+    html += renderHero();
+    html += renderInteractiveMap();
+  } else {
+    html += `
+      <div style="margin-bottom:20px; font-family:'Noto Sans KR', sans-serif;">
+        <span style="color:var(--muted);">Showing results for: </span>
+        ${currentCategory ? `<b>Category: ${sanitize(currentCategory)}</b>` : ''}
+        ${query ? `<b>Keyword: "${sanitize(query)}"</b>` : ''}
+        &nbsp;·&nbsp;<a href="#" id="clear-filters">Reset filters</a>
+      </div>
+    `;
+  }
+
+  if (filtered.length === 0) {
+    html += `
+      <div class="article-card" style="text-align:center; padding:48px 24px;">
+        <h3 style="margin-bottom:8px;">No matching journal entries found</h3>
+        <p style="color:var(--muted); font-size:15px; margin:0 0 16px;">Try searching for terms like "KTX", "market", "palace", or "temple".</p>
+        <button class="btn-primary" style="margin:0 auto;" onclick="clearAllFilters()">View All Articles</button>
+      </div>
+    `;
+    return html;
+  }
+
+  html += `<div class="posts-stream">`;
+  html += filtered.map(p => {
+    const isBookmarked = bookmarkedPosts.includes(p.id);
+    return `
+      <article class="article-card">
+        <div class="card-stamp-col">
+          <div class="stamp-badge">${p.krName}</div>
+        </div>
+        <div class="article-card-main">
+          <div class="card-meta">
+            <span class="tag-badge">${p.cat}</span>
+            <span>📅 ${p.date}</span>
+            <span>⏱️ ${p.readTime}</span>
+          </div>
+          <h3><a href="#${p.id}">${p.title}</a></h3>
+          <p class="excerpt">${p.excerpt}</p>
+          <div class="card-footer">
+            <a class="read-more-link" href="#${p.id}">Read Trip Notes</a>
+            <button class="post-action-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${p.id}', event)">
+              ${isBookmarked ? '★ Saved' : '☆ Save'}
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+  html += `</div>`;
+  return html;
+}
+
+function renderSinglePost(post) {
+  const index = posts.indexOf(post);
+  const prev = posts[index - 1];
+  const next = posts[index + 1];
+  const comments = userComments[post.id] || [];
+  const isBookmarked = bookmarkedPosts.includes(post.id);
+
+  return `
+    <article class="post-container">
+      <div class="post-watermark" aria-hidden="true">${post.krName}</div>
+      
+      <header class="post-header">
+        <div class="card-meta">
+          <span class="tag-badge">${post.cat}</span>
+          <span>📅 ${post.date}</span>
+          <span>⏱️ ${post.readTime}</span>
+        </div>
+        <h1>${post.title}</h1>
+        <div class="post-tools">
+          <div style="font-size:13px; color:var(--muted);">
+            Location Tag: <b style="color:var(--indigo);">${post.krName}</b>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="post-action-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${post.id}')">
+              ${isBookmarked ? '★ Bookmarked' : '☆ Bookmark'}
+            </button>
+            <button class="post-action-btn" onclick="copyCurrentLink()">
+              🔗 Share Link
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <ul class="facts-deck">
+        ${post.facts.map(f => `
+          <li>
+            <b>${f.num}</b>
+            <span>${f.label}</span>
+          </li>
+        `).join("")}
+      </ul>
+
+      <div class="post-body">
+        ${post.body}
+      </div>
+
+      <!-- Prev / Next Navigation -->
+      <nav class="post-pager" aria-label="Article navigation">
+        ${prev ? `
+          <a class="pager-card" href="#${prev.id}">
+            <small>← Previous Leg</small>
+            <span>${prev.title.split(":")[0]}</span>
+          </a>
+        ` : '<div></div>'}
+        
+        ${next ? `
+          <a class="pager-card next" href="#${next.id}">
+            <small>Next Leg →</small>
+            <span>${next.title.split(":")[0]}</span>
+          </a>
+        ` : '<div></div>'}
+      </nav>
+    </article>
+
+    <!-- Reader Discussion Section -->
+    <section class="comments-card" aria-labelledby="comment-heading">
+      <h3 id="comment-heading">
+        <span>Reader Questions & Notes</span>
+        <span class="comment-count-badge">${comments.length}</span>
+      </h3>
+      
+      <div class="comments-list">
+        ${comments.length === 0 ? `
+          <p style="font-size:14.5px; color:var(--muted); font-family:'Noto Sans KR', sans-serif;">
+            No questions asked yet. Traveling to this region soon? Ask a question below!
+          </p>
+        ` : comments.map(c => `
+          <div class="comment-item">
+            <div class="comment-avatar">${sanitize(c.name.charAt(0).toUpperCase())}</div>
+            <div class="comment-content">
+              <div class="comment-author-bar">
+                <b>${sanitize(c.name)}</b>
+                <time>${sanitize(c.date)}</time>
+              </div>
+              <p>${sanitize(c.text)}</p>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+
+      <form class="comment-form" id="new-comment-form">
+        <h4>Leave a note or question</h4>
+        <div class="form-group">
+          <label for="c-name">Your Name or Handle</label>
+          <input type="text" id="c-name" placeholder="e.g. Elena R." required maxlength="40">
+        </div>
+        <div class="form-group">
+          <label for="c-text">Question or Travel Tip</label>
+          <textarea id="c-text" rows="3" placeholder="Ask about reservations, costs, or train timing..." required maxlength="600"></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Post Comment</button>
+      </form>
+    </section>
+  `;
+}
+
+/* ==========================================================================
+   Router & Event Wiring
+   ========================================================================== */
+function route() {
+  const hash = location.hash.slice(1);
+  const activePost = posts.find(p => p.id === hash);
+
+  renderHeaderNav(activePost ? activePost.id : "");
+
+  if (activePost) {
+    $("#view-port").innerHTML = renderSinglePost(activePost);
+    document.title = `${activePost.title} – Two Weeks in Korea`;
+
+    // Bind comment form
+    const commentForm = $("#new-comment-form");
+    if (commentForm) {
+      commentForm.onsubmit = function(e) {
+        e.preventDefault();
+        const nameInput = $("#c-name");
+        const textInput = $("#c-text");
+        
+        if (!userComments[activePost.id]) {
+          userComments[activePost.id] = [];
+        }
+        userComments[activePost.id].push({
+          name: nameInput.value.trim(),
+          date: "Just now",
+          text: textInput.value.trim()
+        });
+        localStorage.setItem("korea_comments", JSON.stringify(userComments));
+        
+        const scrollPos = window.scrollY;
+        route();
+        window.scrollTo(0, scrollPos);
+        showToast("Comment published!");
+      };
+    }
+  } else {
+    $("#view-port").innerHTML = renderHomeView();
+    document.title = "Two Weeks in Korea – An Autumn Travel Journal";
+    
+    const clearBtn = $("#clear-filters");
+    if (clearBtn) clearBtn.onclick = clearAllFilters;
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function clearAllFilters() {
+  currentCategory = "";
+  currentSearch = "";
+  $("#search-input").value = "";
+  if (location.hash) location.hash = "";
+  else route();
+  return false;
+}
+
+function toggleBookmark(id, event) {
+  if (event) event.stopPropagation();
+  if (bookmarkedPosts.includes(id)) {
+    bookmarkedPosts = bookmarkedPosts.filter(item => item !== id);
+    showToast("Removed from bookmarks");
+  } else {
+    bookmarkedPosts.push(id);
+    showToast("Article saved to bookmarks!");
+  }
+  localStorage.setItem("korea_bookmarks", JSON.stringify(bookmarkedPosts));
+  route();
+}
+
+function copyCurrentLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast("Post link copied to clipboard!");
+  }).catch(() => {
+    showToast("Failed to copy link");
+  });
+}
+
+function showToast(message) {
+  const toast = $("#toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2800);
+}
+
+/* Category Filter Click Event */
+document.addEventListener("click", e => {
+  const catBtn = e.target.closest("[data-cat]");
+  if (catBtn) {
+    e.preventDefault();
+    currentCategory = catBtn.dataset.cat;
+    currentSearch = "";
+    $("#search-input").value = "";
+    if (location.hash) location.hash = "";
+    else route();
+  }
+});
+
+/* Search Input Handler */
+$("#search-input").addEventListener("input", e => {
+  currentSearch = e.target.value;
+  currentCategory = "";
+  if (location.hash) {
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+  route();
+});
+
+/* Quick Keyboard Shortcut: Press '/' to focus search */
+window.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
+    e.preventDefault();
+    $("#search-input").focus();
+    $("#search-input").select();
+  }
+});
+
+/* Dark / Light Theme Toggle */
+const themeBtn = $("#theme-btn");
+function initTheme() {
+  const savedTheme = localStorage.getItem("korea_theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const activeTheme = savedTheme || (prefersDark ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", activeTheme);
+  themeBtn.textContent = activeTheme === "dark" ? "☀️" : "🌓";
+}
+themeBtn.onclick = () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("korea_theme", next);
+  themeBtn.textContent = next === "dark" ? "☀️" : "🌓";
+};
+
+/* Reading Scroll Progress */
+window.addEventListener("scroll", () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = (window.scrollY / (docHeight || 1)) * 100;
+  $("#progress-bar").style.width = `${Math.min(100, Math.max(0, scrolled))}%`;
+}, { passive: true });
+
+/* Hash Navigation */
+window.addEventListener("hashchange", route);
+
+/* Initialize */
+initTheme();
+updateCurrencyCalc();
+route();
+</script>
+</body>
+</html>
